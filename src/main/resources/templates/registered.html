@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>注册界面</title>
+		<!-- Bootstrap core CSS -->
+		<link href="/asserts/css/bootstrap.min.css" th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="/asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+		<style type="text/css">
+			/* Chart.js */
+			
+			@-webkit-keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			@keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			.chartjs-render-monitor {
+				-webkit-animation: chartjs-render-animation 0.001s;
+				animation: chartjs-render-animation 0.001s;
+			}
+		</style>
+	</head>
+
+	<body>
+		<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+			<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="javascript:void(0);">您好，请注册</a>
+			<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+			<ul class="navbar-nav px-3">
+				<li class="nav-item text-nowrap">
+					<a class="nav-link" href="index.html">返回</a>
+				</li>
+			</ul>
+		</nav>
+
+		<div class="container-fluid">
+			<div class="row">
+				<nav class="col-md-2 d-none d-md-block bg-light sidebar" th:fragment="left">
+					<div class="sidebar-sticky">
+						<ul class="nav flex-column">
+							<li class="nav-item">
+								<a class="nav-link active" href="javascript:void(0)">
+									<h1>会员福利</h1>
+								</a>
+							</li>
+							<li class="nav-item nav-link active">1.买东西不要钱</li>
+							<li class="nav-item nav-link active">2.卖东西不再有场地费</li>
+							<li class="nav-item nav-link active">3.只要你有得卖，就有人买</li>
+							<li class="nav-item nav-link active">4.相信我们，给你一波韭菜</li>
+						</ul>
+					</div>
+				</nav>
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+<!--							<div class="form-group" style="width: 50%">-->
+<!--								<label >店铺名称</label>-->
+<!--								<input type="text" class="form-control" placeholder="店名" name="bName">-->
+<!--								<h6 style="color:red">[[${msg}]]</h6>-->
+<!--							</div>-->
+<!--							<div class="form-group" style="width: 50%">-->
+<!--								<label >设置密码</label>-->
+<!--								<input type="password" class="form-control" placeholder="6位数字" name="password">-->
+<!--							</div>-->
+<!--							<div class="form-group" style="width: 50%">-->
+<!--								<label >电话号码</label>-->
+<!--								<input type="text" class="form-control" placeholder="联系电话" name="bTel">-->
+<!--							</div>-->
+<!--							<div class="form-group" style="width: 50%">-->
+<!--								<label >电子邮箱</label>-->
+<!--								<input type="text" class="form-control" placeholder="选填" name="bEmail">-->
+<!--							</div>-->
+<!--							<div class="form-group" style="width: 50%">-->
+<!--								<label >取现密码</label>-->
+<!--								<input type="password" class="form-control" placeholder="6位数字" name="key">-->
+<!--							</div>-->
+<!--							<div class="form-group" style="width: 50%">-->
+<!--								<label >店铺所属</label>-->
+<!--								<input type="text" class="form-control" placeholder="老板姓名" name="bossName">-->
+<!--							</div>-->
+<!--							<div class="form-group" style="width: 50%">-->
+<!--								<label >年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄</label>-->
+<!--								<input type="text" class="form-control" placeholder="年龄" name="age">-->
+<!--							</div>-->
+<!--							<div class="form-group" style="width: 50%">-->
+<!--								<label >性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>-->
+<!--								<input type="text" class="form-control" placeholder="男/女" name="sex">-->
+<!--							</div>-->
+<!--							<div class="form-group" style="width: 50%">-->
+<!--								<label >商铺地址</label>-->
+<!--								<input type="text" class="form-control" placeholder="地名" name="address">-->
+<!--							</div>-->
+							<div class="col-md-8 order-md-1">
+								<form class="needs-validation was-validated" th:action="@{/user/registered}">
+									<h2 align="center">注册</h2>
+
+									<!--					<div class="table-responsive" style="line-height: 4.5">-->
+									<h1 class="h3 mb-3 font-weight-normal" align="center">请填写店铺信息</h1>
+									<div class="row">
+										<div class="col-md-6 mb-3">
+											<label for="lastName">店铺名称</label>
+											<input type="text" class="form-control" id="lastName" name="bName" >
+										</div>
+										<div class="col-md-6 mb-3">
+											<label for="bLogo">商家品牌</label>
+											<input type="text" class="form-control" name="bLogo" id="bLogo" placeholder="注册时，默认无" readonly="readonly">
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-6 mb-3">
+											<label for="pwd">登录密码</label>
+											<input type="password" class="form-control" name="password" id="pwd" >
+										</div>
+										<div class="col-md-6 mb-3">
+											<label for="bTel">电话号码</label>
+											<input type="text" class="form-control" id="bTel" name="bTel" >
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-6 mb-3">
+											<label for="bEmail">电子邮箱</label>
+											<input type="text" class="form-control" name="bEmail" id="bEmail" >
+										</div>
+										<div class="col-md-6 mb-3">
+											<label for="key">取现密码</label>
+											<input type="password" class="form-control" id="key" name="key" >
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-6 mb-3">
+											<label for="bossName">店铺所属</label>
+											<input type="text" class="form-control" name="bossName" id="bossName" >
+										</div>
+										<div class="col-md-6 mb-3">
+											<label for="age">年龄</label>
+											<input type="text" class="form-control" id="age" name="age" >
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-6 mb-3">
+											<label for="sex">性别</label>
+											<input type="text" class="form-control" name="sex" id="sex" >
+										</div>
+										<div class="col-md-6 mb-3">
+											<label for="address">商铺地址</label>
+											<input type="text" class="form-control" id="address" name="address" >
+										</div>
+									</div>
+
+							        <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal" style="width: 25%;display:block;margin:0 auto">
+							         提交
+									</button>
+							<!-- Modal -->
+							        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										</div>
+										<div class="modal-body">
+											如果你已确认信息，点击OK，就会加入我们这个大家庭！
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">还要考虑考虑</button>
+											<button type="submit" class="btn btn-primary">OK</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						        </form>
+					       </div>
+				</main>
+			</div>
+		</div>
+
+		<!-- Bootstrap core JavaScript
+    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"></script>
+		<script type="text/javascript" src="asserts/js/popper.min.js"></script>
+		<script type="text/javascript" src="asserts/js/bootstrap.min.js"></script>
+
+		<!-- Icons -->
+		<script type="text/javascript" src="asserts/js/feather.min.js"></script>
+		<script>
+			feather.replace()
+		</script>
+
+		<!-- Graphs -->
+		<script type="text/javascript" src="asserts/js/Chart.min.js"></script>
+		<script>
+			var ctx = document.getElementById("myChart");
+			var myChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+					datasets: [{
+						data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+						lineTension: 0,
+						backgroundColor: 'transparent',
+						borderColor: '#007bff',
+						borderWidth: 4,
+						pointBackgroundColor: '#007bff'
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: false
+							}
+						}]
+					},
+					legend: {
+						display: false,
+					}
+				}
+			});
+		</script>
+
+	</body>
+
+</html>

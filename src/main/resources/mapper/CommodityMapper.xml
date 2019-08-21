@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lanqiao.food_delivery_bosses.mapper.CommodityMapper">
+    <resultMap id="BaseMap" type="org.lanqiao.food_delivery_bosses.pojo.Commodity">
+        <id column="com_id" property="comId"></id>
+        <result column="com_name" property="comName"></result>
+        <result column="type" property="type"></result>
+        <result column="b_id" property="bId"></result>
+        <result column="size" property="size"></result>
+        <result column="price" property="price"></result>
+        <result column="describes" property="describes"></result>
+        <result column="picture" property="picture"></result>
+    </resultMap>
+    <!--查询全部商品-->
+    <select id="selectAll" resultMap="BaseMap">
+        select * from commodity where b_id='18200110022'
+    </select>
+   <!-- <select id="selectCount" resultType="int">
+        select count(*)  from commodity
+    </select>
+   <select id="selectPage" resultMap="BaseMap">
+       select * from commodity limit #{begin},#{num}
+   </select>-->
+   <!-- 根据商品描述模糊查询-->
+    <select id="selectCommodityByDescribes" parameterType="string" resultMap="BaseMap">
+        select * from commodity  where describes like '%${describes}%' and b_id='18200110022'
+    </select>
+   <!-- &lt;!&ndash; 根据商品类型查询&ndash;&gt;
+    <select id="selectCommodityByType" parameterType="string" resultMap="BaseMap">
+        select * from commodity
+        <where>
+            <if test="type!=null">
+                and `type`=#{type}
+            </if>
+        </where>
+    </select>-->
+    <!--<select id="selectCommodityByContion" resultMap="BaseMap">
+        select * from commodity where describes like '%${describes}%' and `type` like '%${type}%'
+
+    </select>-->
+<!--    根据商品id查询-->
+    <select id="selectCommodityById" parameterType="int" resultMap="BaseMap">
+        select * from commodity where com_id=#{comId} and  b_id='18200110022'
+    </select>
+    <!--添加商品SPU-->
+    <insert id="insertCommodity">
+        insert into commodity(com_id,com_name,`type`,b_id,`size`,price,describes,picture) values(#{comId},#{comName},#{type},'18200110022',#{size},#{price},#{describes},#{picture})
+        <selectKey resultType="int" keyColumn="com_id" keyProperty="comId" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <!--删除商品SPU-->
+   <delete id="deleteCommodityById" parameterType="int">
+       delete from commodity where com_id=#{comId}
+   </delete>
+    <!--修改商品信息-->
+    <update id="updateCommodity">
+        update commodity set com_name=#{comName},`type`=#{type},`size`=#{size},price=#{price},describes=#{describes},picture=#{picture} where com_id=#{comId}
+    </update>
+
+</mapper>

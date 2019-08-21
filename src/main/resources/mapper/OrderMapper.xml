@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lanqiao.food_delivery_bosses.mapper.OrderMapper">
+    <resultMap id="BaseMap" type="org.lanqiao.food_delivery_bosses.pojo.Order">
+        <id column="ord_id" property="ordId"></id>
+        <result column="ord_name" property="ordName"></result>
+        <result column="ord_address" property="ordAddress"></result>
+        <result column="ord_tel" property="ordTel"></result>
+        <result column="schedule" property="schedule"></result>
+        <result column="user_id" property="userId"></result>
+        <result column="tel" property="tel"></result>
+        <result column="com_id" property="comId"></result>
+        <result column="com_name" property="comName"></result>
+        <result column="price" property="price"></result>
+        <result column="quantity" property="quantity"></result>
+        <result column="b_id" property="bId"></result>
+        <result column="b_name" property="bName"></result>
+        <result column="b_tel" property="bTel"></result>
+        <result column="create_date" property="createDate"></result>
+    </resultMap>
+    <select id="selAllOrders" resultMap="BaseMap">
+        select * from orders where b_id='18200110022'
+    </select>
+    <select id="selOrderById" parameterType="int" resultMap="BaseMap">
+        select * from orders where ord_id = #{ordId}  and  b_id='18200110022'
+    </select>
+    <select id="selOrderBySchedule" parameterType="string" resultMap="BaseMap">
+        select * from orders where schedule like '%${schedule}%' and  b_id='18200110022'
+    </select>
+    <update id="updateOrder">
+        update orders set ord_name=#{ordName},ord_address=#{ordAddress},ord_tel=#{ordTel},schedule=#{schedule} where ord_id=#{ordId}
+    </update>
+</mapper>
